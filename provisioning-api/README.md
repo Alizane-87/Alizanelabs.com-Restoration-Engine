@@ -67,7 +67,9 @@ high-severity ones blocking one-click approval. A price that was never mentioned
 flag — it is simply `null`, which is the correct answer.
 
 If extraction fails entirely, the interview is still staged as `EXTRACTION_FAILED` with a
-high-severity flag, so a failed call surfaces to a human rather than disappearing.
+high-severity flag, so a failed call surfaces to a human rather than disappearing. If *staging*
+itself fails on every sink, the idempotency claim is released so GHL's retry is processed as a
+fresh delivery instead of being dismissed as a duplicate.
 
 ## Configuration
 
@@ -81,10 +83,19 @@ the service refuses to start otherwise, since a record with nowhere to go is a l
   (column order is `STAGING_COLUMNS` in `src/lib/staging/record.ts`, and it is append-only —
   never reorder it while records are live).
 - **Slack**: `SLACK_WEBHOOK_URL` — the message includes extracted prices and high-severity flags.
-- **Upstash Redis** (`UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`): optional but
-  recommended. Idempotency and rate limiting fall back to per-instance memory, which is
-  best-effort on serverless — two concurrent retries landing on different instances can both be
-  processed.
+- **Upstash Redis** (`UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`): treat these as
+  required in production. Idempotency and rate limiting otherwise fall back to per-instance
+  memory, which is best-effort on serverless — retries landing on different instances can both
+  be processed (in `next dev`, recompiling a route is enough to reset it).
+
+## Known limits
+
+- The per-source rate limit keys on `x-forwarded-for`, which a direct caller controls, so a
+  global 300/min ceiling backs it up. Keep the deployment reachable only through Vercel's proxy,
+  which overwrites that header.
+- A signature sent without `x-ghl-timestamp` has no expiry, so a captured body stays replayable
+  until its 24h idempotency key lapses. Send the timestamp header from GHL to get the 5-minute
+  replay window.
 
 ## Deploying to Vercel
 

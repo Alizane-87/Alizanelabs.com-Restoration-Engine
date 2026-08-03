@@ -13,6 +13,8 @@ export interface Kv {
   setIfAbsent(key: string, ttlSeconds: number): Promise<boolean>;
   /** Increments a counter, returning its new value, and applies the TTL on creation. */
   increment(key: string, ttlSeconds: number): Promise<number>;
+  /** Removes a key, so a failed unit of work can be retried. */
+  remove(key: string): Promise<void>;
 }
 
 const memory = new Map<string, { value: number; expiresAt: number }>();
@@ -42,6 +44,9 @@ export const memoryKv: Kv = {
     existing.value += 1;
     return existing.value;
   },
+  async remove(key) {
+    memory.delete(key);
+  },
 };
 
 function upstashKv(url: string, token: string): Kv {
@@ -67,6 +72,9 @@ function upstashKv(url: string, token: string): Kv {
       const value = Number(await command("INCR", key));
       if (value === 1) await command("EXPIRE", key, ttlSeconds);
       return value;
+    },
+    async remove(key) {
+      await command("DEL", key);
     },
   };
 }

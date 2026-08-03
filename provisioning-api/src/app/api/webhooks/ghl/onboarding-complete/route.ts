@@ -5,7 +5,7 @@ import { logger } from "@/lib/logger";
 import { processOnboarding } from "@/lib/pipeline/processOnboarding";
 import { ghlOnboardingWebhookSchema, flattenTranscript, resolveEventId } from "@/lib/schemas/ghl";
 import { readSignature, TIMESTAMP_HEADER, verifySignature } from "@/lib/security/hmac";
-import { claimIdempotencyKey, rateLimit } from "@/lib/security/rateLimit";
+import { claimIdempotencyKey, rateLimit, releaseIdempotencyKey } from "@/lib/security/rateLimit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,6 +13,8 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 const RATE_LIMIT_PER_MINUTE = 120;
+/** `x-forwarded-for` is caller-controlled, so a global ceiling backs the per-source one. */
+const GLOBAL_RATE_LIMIT_PER_MINUTE = 300;
 
 function json(body: unknown, status: number, headers?: Record<string, string>): Response {
   return new Response(JSON.stringify(body), {
@@ -32,14 +34,20 @@ function json(body: unknown, status: number, headers?: Record<string, string>): 
 export async function POST(request: NextRequest): Promise<Response> {
   const env = getEnv();
 
-  const rate = await rateLimit({
-    key: `ghl-onboarding:${request.headers.get("x-forwarded-for") ?? "unknown"}`,
-    limit: RATE_LIMIT_PER_MINUTE,
-    windowSeconds: 60,
-  });
-  if (!rate.allowed) {
-    logger.warn("Webhook rate limited", { count: rate.count, limit: rate.limit });
-    return json({ error: "rate_limited" }, 429, { "retry-after": String(rate.retryAfterSeconds) });
+  const limits = await Promise.all([
+    rateLimit({
+      key: `ghl-onboarding:${request.headers.get("x-forwarded-for") ?? "unknown"}`,
+      limit: RATE_LIMIT_PER_MINUTE,
+      windowSeconds: 60,
+    }),
+    rateLimit({ key: "ghl-onboarding:global", limit: GLOBAL_RATE_LIMIT_PER_MINUTE, windowSeconds: 60 }),
+  ]);
+  const exceeded = limits.find((limit) => !limit.allowed);
+  if (exceeded) {
+    logger.warn("Webhook rate limited", { count: exceeded.count, limit: exceeded.limit });
+    return json({ error: "rate_limited" }, 429, {
+      "retry-after": String(exceeded.retryAfterSeconds),
+    });
   }
 
   const declaredLength = Number(request.headers.get("content-length") ?? "0");
@@ -90,8 +98,9 @@ export async function POST(request: NextRequest): Promise<Response> {
   }
 
   const eventId = resolveEventId(payload);
-  if (eventId) {
-    const claimed = await claimIdempotencyKey(`ghl-onboarding:${eventId}`);
+  const idempotencyKey = eventId ? `ghl-onboarding:${eventId}` : null;
+  if (idempotencyKey) {
+    const claimed = await claimIdempotencyKey(idempotencyKey);
     if (!claimed) {
       logger.info("Duplicate webhook ignored", { eventId });
       return json({ status: "duplicate_ignored", eventId }, 200);
@@ -102,7 +111,11 @@ export async function POST(request: NextRequest): Promise<Response> {
     try {
       await processOnboarding(payload);
     } catch (error) {
-      logger.error("Onboarding processing failed", {
+      // Processing failed *after* the 202, so the only remaining chance to keep this
+      // interview is the sender's retry — release the claim so it is not dismissed as a
+      // duplicate.
+      if (idempotencyKey) await releaseIdempotencyKey(idempotencyKey);
+      logger.error("Onboarding processing failed; idempotency claim released for retry", {
         eventId,
         error: error instanceof Error ? error.message : String(error),
       });

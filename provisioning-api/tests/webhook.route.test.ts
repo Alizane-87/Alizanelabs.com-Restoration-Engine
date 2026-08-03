@@ -96,6 +96,18 @@ describe("POST /api/webhooks/ghl/onboarding-complete", () => {
     expect(processOnboarding).toHaveBeenCalledTimes(1);
   });
 
+  it("releases the idempotency claim when processing fails, so the retry is not dropped", async () => {
+    processOnboarding.mockRejectedValueOnce(new Error("All staging sinks failed"));
+
+    expect((await POST(buildRequest(validPayload))).status).toBe(202);
+    await settleDeferred();
+
+    const retry = await POST(buildRequest(validPayload));
+    expect(retry.status).toBe(202);
+    await settleDeferred();
+    expect(processOnboarding).toHaveBeenCalledTimes(2);
+  });
+
   it("rejects malformed JSON and a payload with no transcript", async () => {
     expect((await POST(buildRequest("{not json"))).status).toBe(400);
     expect((await POST(buildRequest({ eventId: "evt_2", contactId: "c_2" }))).status).toBe(422);
@@ -115,6 +127,16 @@ describe("POST /api/webhooks/ghl/onboarding-complete", () => {
       statuses.push(response.status);
     }
     expect(statuses.filter((status) => status === 429).length).toBe(2);
+  });
+
+  it("still stops a flood that rotates the caller-controlled forwarded-for header", async () => {
+    let accepted = 0;
+    for (let index = 0; index < 320; index += 1) {
+      const request = buildRequest({ ...validPayload, eventId: `evt_spoof_${index}` });
+      request.headers.set("x-forwarded-for", `198.51.100.${index % 256}`);
+      if ((await POST(request)).status === 202) accepted += 1;
+    }
+    expect(accepted).toBe(300);
   });
 
   it("does not accept GET", async () => {

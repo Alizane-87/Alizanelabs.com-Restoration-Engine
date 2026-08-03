@@ -32,3 +32,11 @@ export async function rateLimit(options: {
 export async function claimIdempotencyKey(key: string, ttlSeconds = 24 * 60 * 60): Promise<boolean> {
   return getKv().setIfAbsent(`idempotency:${key}`, ttlSeconds);
 }
+
+/**
+ * Gives the key back after processing failed, so the sender's retry is treated as a fresh
+ * delivery instead of being dismissed as a duplicate.
+ */
+export async function releaseIdempotencyKey(key: string): Promise<void> {
+  await getKv().remove(`idempotency:${key}`);
+}
