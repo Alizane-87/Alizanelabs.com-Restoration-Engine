@@ -1,0 +1,31 @@
+{
+  "name": "alizanelabs-provisioning-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Onboarding data extraction and provisioning API for Alizane Labs (GHL webhook -> LLM extraction -> human review staging).",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "google-auth-library": "^10.9.1",
+    "next": "^15.5.22",
+    "openai": "^6.49.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.6",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.5.22",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
+  }
+}
