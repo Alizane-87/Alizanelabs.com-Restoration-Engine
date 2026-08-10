@@ -131,7 +131,7 @@ export default function HowItWorksPage() {
             title="The routed-call timeline"
             description="Elapsed times are an illustration of the workflow shape, not a promised response time."
           />
-          <IllustrativeLabel className="text-steel-dark" />
+          <IllustrativeLabel />
         </div>
 
         <ol className="mt-10 flex flex-col">
@@ -204,7 +204,7 @@ export default function HowItWorksPage() {
         <ul className="mt-10 grid gap-4 md:grid-cols-2">
           {failureRows.map((row) => (
             <Card key={row.path} as="li" tone="dark">
-              <StatusChip status={row.status} />
+              <StatusChip status={row.status} surface="dark" />
               <CardTitle className="mt-3 text-base text-white">{row.path}</CardTitle>
               <CardBody tone="dark">{row.result}</CardBody>
             </Card>

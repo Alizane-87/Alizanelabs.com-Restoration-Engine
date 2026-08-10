@@ -222,7 +222,7 @@ export default function ProductPage() {
         <ul className="mt-10 grid gap-4 md:grid-cols-2">
           {failurePaths.map((path) => (
             <Card key={path.title} as="li" tone="dark">
-              <StatusChip status={path.status} />
+              <StatusChip status={path.status} surface="dark" />
               <CardTitle className="mt-3 text-white">{path.title}</CardTitle>
               <CardBody tone="dark">{path.body}</CardBody>
             </Card>

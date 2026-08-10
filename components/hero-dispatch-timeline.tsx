@@ -17,7 +17,7 @@ export function HeroDispatchTimeline() {
         <span className="font-mono text-xs uppercase tracking-[0.18em] text-steel">
           Incident 4821 · After-hours
         </span>
-        <IllustrativeLabel />
+        <IllustrativeLabel surface="dark" />
       </figcaption>
 
       <ol className="mt-5 flex flex-col">
@@ -64,7 +64,9 @@ export function HeroDispatchTimeline() {
 
       <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
         <span className="text-xs text-steel">Named human acceptance recorded</span>
-        <StatusChip status="accepted">Accepted</StatusChip>
+        <StatusChip status="accepted" surface="dark">
+          Accepted
+        </StatusChip>
       </div>
     </figure>
   );

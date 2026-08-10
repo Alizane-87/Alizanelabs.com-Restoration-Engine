@@ -23,14 +23,27 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: GENERIC_ERROR }, { status: 400 });
   }
 
+  // Optional fields arrive as "" from the browser; required fields keep their
+  // empty value so the schema reports its own copy rather than "Required".
+  const optionalFields = new Set(["monthlyCallRange", "crm"]);
   const normalised =
     typeof body === "object" && body !== null
       ? Object.fromEntries(
           Object.entries(body as Record<string, unknown>).map(([key, value]) =>
-            value === "" && key !== "website" ? [key, undefined] : [key, value],
+            value === "" && optionalFields.has(key) ? [key, undefined] : [key, value],
           ),
         )
       : body;
+
+  // Honeypot filled: accept silently so bots learn nothing from the response.
+  if (
+    typeof normalised === "object" &&
+    normalised !== null &&
+    typeof (normalised as Record<string, unknown>).website === "string" &&
+    (normalised as Record<string, unknown>).website !== ""
+  ) {
+    return NextResponse.json({ ok: true }, { status: 202 });
+  }
 
   const parsed = leadSchema.safeParse(normalised);
   if (!parsed.success) {
@@ -38,11 +51,6 @@ export async function POST(request: Request) {
       { message: "Please check the highlighted fields.", fieldErrors: toFieldErrors(parsed.error) },
       { status: 400 },
     );
-  }
-
-  // Honeypot filled: accept silently so bots learn nothing.
-  if (parsed.data.website) {
-    return NextResponse.json({ ok: true }, { status: 202 });
   }
 
   const lead = { ...parsed.data };
