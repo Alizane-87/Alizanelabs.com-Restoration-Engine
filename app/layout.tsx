@@ -21,6 +21,15 @@ export const metadata: Metadata = {
   },
   description: site.defaultDescription,
   applicationName: site.name,
+  keywords: [
+    "restoration answering service",
+    "water damage dispatch",
+    "fire damage answering",
+    "after-hours emergency intake",
+    "restoration call routing",
+    "verified dispatch",
+    "Alizane Labs",
+  ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -28,11 +37,20 @@ export const metadata: Metadata = {
     title: `Restoration Emergency Dispatch System | ${site.name}`,
     description: site.defaultDescription,
     url: siteUrl,
+    images: [
+      {
+        url: "/alizane-logo-v5.png",
+        width: 400,
+        height: 100,
+        alt: site.name,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `Restoration Emergency Dispatch System | ${site.name}`,
     description: site.defaultDescription,
+    images: ["/alizane-logo-v5.png"],
   },
   robots: { index: true, follow: true },
 };
