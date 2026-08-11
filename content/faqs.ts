@@ -44,7 +44,7 @@ export const homeFaqs: Faq[] = [
   {
     question: "Do you guarantee recovered revenue?",
     answer:
-      "No. Alizane provides response infrastructure and evidence. Lead volume, staff availability, sales, job qualification, and revenue remain outside the system's control.",
+      "No. Alizane Labs provides response infrastructure and evidence. Lead volume, staff availability, sales, job qualification, and revenue remain outside the system's control.",
   },
 ];
 
@@ -52,7 +52,7 @@ export const pricingFaqs: Faq[] = [
   {
     question: "Why is this priced above a per-minute answering product?",
     answer:
-      "Per-minute products price the conversation. Alizane prices the handoff: runbook design, escalation logic, acceptance evidence, monitoring, reconciliation, and fallback operation are delivered and maintained by us.",
+      "Per-minute products price the conversation. Alizane Labs prices the handoff: runbook design, escalation logic, acceptance evidence, monitoring, reconciliation, and fallback operation are delivered and maintained by us.",
   },
   {
     question: "Is there a contract minimum?",

@@ -20,7 +20,7 @@ const principles = [
   },
   {
     title: "Managed, not shipped",
-    body: "You should not have to administer an automation platform to keep after-hours coverage working. Alizane operates the deployment.",
+    body: "You should not have to administer an automation platform to keep after-hours coverage working. Alizane Labs operates the deployment.",
   },
   {
     title: "Boundaries stated up front",

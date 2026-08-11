@@ -137,7 +137,7 @@ export const comparisonRows = [
   {
     capability: "Daily health checks",
     generic: "Usually self-managed",
-    engine: "Managed by Alizane",
+    engine: "Managed by Alizane Labs",
   },
   {
     capability: "Monthly response evidence",
@@ -147,7 +147,7 @@ export const comparisonRows = [
   {
     capability: "Implementation ownership",
     generic: "DIY or light onboarding",
-    engine: "Alizane-managed deployment",
+    engine: "Alizane Labs-managed deployment",
   },
 ] as const;
 
@@ -205,6 +205,7 @@ export type PricingTier = {
   name: string;
   price: string;
   unit: string;
+  setupText?: string;
   summary: string;
   items: readonly string[];
   featured?: boolean;
@@ -219,45 +220,50 @@ export const pricing: {
   note: "Launch pricing. Final scope is confirmed during the readiness audit.",
   tiers: [
     {
-      name: "Implementation",
-      price: "From $1,500",
-      unit: "per location",
-      summary:
-        "One-time readiness audit, runbook design, build, and staged acceptance testing before go-live.",
+      name: "Readiness Audit",
+      price: "Included with Onboarding",
+      unit: "one-time evaluation",
+      summary: "Full after-hours routing review and operational risk assessment before go-live.",
       items: [
-        "After-hours call-path and forwarding review",
-        "On-call roster and escalation runbook design",
-        "Restoration intake and safety-boundary configuration",
-        "Twenty-scenario staging test",
-        "Staff walkthrough and go-live support",
+        "Current after-hours call path mapping",
+        "Forwarding and fallback configuration review",
+        "On-call roster & escalation runbook design",
+        "Disclosure, recording consent, & data-flow review",
+        "Line compatibility check",
       ],
     },
     {
-      name: "Verified Dispatch management",
-      price: "From $599",
-      unit: "per month",
-      summary:
-        "Ongoing managed operation of the Engine: monitoring, roster upkeep, reconciliation, and response reporting.",
+      name: "Verified Dispatch",
+      price: "$599",
+      unit: "/month per location",
+      setupText: "From $1,500 implementation setup per location",
+      summary: "Full managed emergency intake, automated intake assistant, sequential escalation, and deterministic acceptance.",
       items: [
-        "Workflow and voice-agent monitoring",
-        "Daily and weekly health checks",
-        "On-call roster updates",
-        "Incident reconciliation",
-        "Monthly acceptance and exception report",
+        "24/7 After-hours routed emergency intake",
+        "Restoration-specific incident triage",
+        "Active call escalation (Sequential roster calls)",
+        "Deterministic press-1 or verbal human acceptance",
+        "Duplicate-acceptance protection & state locking",
+        "Alizane Labs-managed daily health checks & maintenance",
+        "Monthly response & acceptance timeline reports",
+        "Up to 3 on-call roster shifts per location",
       ],
       featured: true,
     },
     {
       name: "Assured Dispatch",
       price: "Custom",
-      unit: "contracted fallback",
-      summary:
-        "Verified Dispatch plus a contracted live-human fallback path defined in your service level.",
+      unit: "tailored enterprise SLA",
+      setupText: "Custom implementation scoping",
+      summary: "Includes contracted live-human fallback operator dispatch for ultimate operational coverage.",
       items: [
-        "Everything in Verified Dispatch management",
-        "Contracted live-human fallback",
-        "Extended service-level definition",
-        "Scoped per deployment",
+        "All Verified Dispatch features",
+        "Contracted live-human backstop fallback operator",
+        "Multi-location consolidated dashboard",
+        "Custom CRM / job-management webhooks",
+        "Dedicated account engineer & instant roster updates",
+        "Custom compliance & recording retention options",
+        "Priority 24/7 system health monitoring",
       ],
     },
   ],

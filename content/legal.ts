@@ -158,7 +158,7 @@ export const aiDisclosureSections: LegalSection[] = [
   {
     heading: "The limits of this page",
     paragraphs: [
-      "This page explains Alizane's general approach. It does not itself make any client deployment legally compliant. Consent wording, recording practice, retention, and fallback design must be reviewed for each client, in each jurisdiction where they operate, with their own legal advisers.",
+      "This page explains Alizane Labs' general approach. It does not itself make any client deployment legally compliant. Consent wording, recording practice, retention, and fallback design must be reviewed for each client, in each jurisdiction where they operate, with their own legal advisers.",
     ],
   },
 ];

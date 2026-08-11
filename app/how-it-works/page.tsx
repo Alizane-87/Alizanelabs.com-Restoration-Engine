@@ -216,11 +216,11 @@ export default function HowItWorksPage() {
         <SectionHeading
           id="control-heading"
           eyebrow="Division of responsibility"
-          title="What Alizane manages, and what stays yours"
+          title="What Alizane Labs manages, and what stays yours"
         />
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           <Card>
-            <CardTitle>Alizane manages</CardTitle>
+            <CardTitle>Alizane Labs manages</CardTitle>
             <ul className="mt-4 flex flex-col gap-2.5 text-sm text-steel-dark">
               {[
                 "Implementation and runbook configuration",

@@ -126,7 +126,7 @@ export default function HomePage() {
           tone="dark"
           eyebrow="Trust by process"
           title="You do not have to trust a slide deck. Test the system."
-          description="Alizane is early. Instead of borrowed credibility, the buying process is procedural: you test the workflow before it carries a real emergency."
+          description="Alizane Labs is early. Instead of borrowed credibility, the buying process is procedural: you test the workflow before it carries a real emergency."
         />
         <ProofProtocol />
       </Section>
@@ -158,7 +158,7 @@ export default function HomePage() {
           id="offer-heading"
           eyebrow="The offer"
           title="Installed around your on-call reality"
-          description="Alizane runs the deployment as managed infrastructure rather than handing you software to configure."
+          description="Alizane Labs runs the deployment as managed infrastructure rather than handing you software to configure."
         />
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {offerColumns.map((column) => (
@@ -195,7 +195,7 @@ export default function HomePage() {
           id="pricing-heading"
           eyebrow="Pricing"
           title="Premium because the handoff is managed"
-          description="Generic answering products compete on minutes. Alizane is priced around implementation ownership, dispatch verification, monitoring, and fallback operations."
+          description="Generic answering products compete on minutes. Alizane Labs is priced around implementation ownership, dispatch verification, monitoring, and fallback operations."
         />
         <PricingCards location="home" />
         <p className="mt-5 text-sm text-steel-dark">{pricing.note}</p>

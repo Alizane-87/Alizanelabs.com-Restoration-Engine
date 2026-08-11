@@ -19,7 +19,7 @@ export const metadata = pageMetadata({
 const whyPremium = [
   {
     title: "Implementation is owned, not handed over",
-    body: "Alizane runs the readiness audit, designs the escalation runbook, builds the workflow, and tests it before a real emergency touches it.",
+    body: "Alizane Labs runs the readiness audit, designs the escalation runbook, builds the workflow, and tests it before a real emergency touches it.",
   },
   {
     title: "The handoff is verified",
@@ -51,7 +51,7 @@ export default function PricingPage() {
               Premium because the handoff is managed
             </h1>
             <p className="text-base leading-relaxed text-steel sm:text-lg">
-              Generic answering products compete on minutes. Alizane is priced around
+              Generic answering products compete on minutes. Alizane Labs is priced around
               implementation ownership, dispatch verification, monitoring, and fallback
               operations.
             </p>

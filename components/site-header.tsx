@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -31,11 +32,8 @@ export function SiteHeader() {
         Skip to content
       </a>
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
-        <Link
-          href="/"
-          className="text-sm font-semibold uppercase tracking-[0.22em] text-white"
-        >
-          {site.name}
+        <Link href="/" className="flex items-center">
+          <Image src="/alizane-logo-v5.png" alt={site.name} width={240} height={60} className="h-10 w-auto object-contain" priority />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">

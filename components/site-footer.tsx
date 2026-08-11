@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { footerNav, site } from "@/content/site";
@@ -10,9 +11,9 @@ export function SiteFooter() {
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8">
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="max-w-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">
-              {site.name}
-            </p>
+            <Link href="/" className="flex items-center">
+              <Image src="/alizane-logo-v5.png" alt={site.name} width={200} height={50} className="h-8 w-auto object-contain opacity-90" />
+            </Link>
             <p className="mt-3 text-sm leading-relaxed">{site.descriptor}</p>
             <p className="mt-4 text-xs leading-relaxed">{site.evidenceScope}</p>
           </div>

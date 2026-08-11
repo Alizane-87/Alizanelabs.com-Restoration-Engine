@@ -184,7 +184,7 @@ export default function ProductPage() {
           id="roster-heading"
           eyebrow="Escalation"
           title="Your roster, in the order you approved"
-          description="The on-call roster is designed with you during the readiness audit and maintained by Alizane as part of managed operation."
+          description="The on-call roster is designed with you during the readiness audit and maintained by Alizane Labs as part of managed operation."
         />
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           <Card>
