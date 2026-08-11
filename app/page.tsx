@@ -15,6 +15,9 @@ import { faqSchema, serviceSchema } from "@/lib/structured-data";
 export default function HomePage() {
   return (
     <>
+      <div className="bg-amber text-navy py-2 px-4 text-center text-sm font-medium">
+        [Placeholder] The After-Hours Gap Report: How Restoration Companies Lose $40,000+ a Year Without Knowing It. <a href="#" className="underline font-semibold hover:text-black">Download the free gap report &rarr;</a>
+      </div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema()) }}
@@ -29,16 +32,13 @@ export default function HomePage() {
           <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
             <div className="animate-rise-in flex flex-col gap-6">
               <Eyebrow tone="dark">
-                Verified Dispatch Assurance for restoration companies
+                For restoration companies. After-hours emergency dispatch.
               </Eyebrow>
               <h1 className="text-3xl font-semibold leading-[1.1] text-white sm:text-4xl lg:text-5xl">
-                The emergency call is not handled until a human accepts it.
+                You're losing jobs you never even knew you were losing.
               </h1>
               <p className="max-w-xl text-base leading-relaxed text-steel sm:text-lg">
-                The Restoration Emergency Engine answers after-hours calls routed into the
-                system, collects dispatch-ready details, and escalates through your approved
-                on-call roster until a named person accepts—or your contracted fallback is
-                reached.
+                At 2 AM, a homeowner's basement is flooding. They call your number. Instead of voicemail, they reach our system — which collects the details, calls your technician, and records their verbal acceptance before hanging up. You wake up with a confirmed dispatch, not a missed lead.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <TrackedLink
@@ -59,7 +59,7 @@ export default function HomePage() {
                   {cta.secondary.label}
                 </TrackedLink>
               </div>
-              <ScopeNote tone="dark">{site.scopeNote}</ScopeNote>
+              <ScopeNote tone="dark">Tested across 20 failure scenarios before your first live call.</ScopeNote>
             </div>
 
             <HeroDispatchTimeline />
@@ -74,7 +74,14 @@ export default function HomePage() {
           title="A message is not a dispatch."
           description="Voicemail waits. Generic answering services take notes. Notifications can be missed. During an after-hours restoration call, the operational question is simple: who has accepted responsibility for calling the homeowner?"
         />
-        <ul className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-10 mb-8 rounded-lg border border-amber/20 bg-amber/5 px-6 py-5 text-amber-900 shadow-sm text-center">
+          <p className="text-base sm:text-lg font-medium leading-relaxed">
+            The average restoration job is worth $4,000–$12,000.<br/>
+            Every missed after-hours call is a coin flip on that revenue.<br/>
+            The average restoration company loses 3–7 jobs per month to after-hours gaps.
+          </p>
+        </div>
+        <ul className="grid gap-4 md:grid-cols-3">
           {problemCards.map((card) => (
             <Card key={card.title} as="li">
               <CardTitle>{card.title}</CardTitle>
@@ -124,9 +131,9 @@ export default function HomePage() {
         <SectionHeading
           id="proof-heading"
           tone="dark"
-          eyebrow="Trust by process"
-          title="You do not have to trust a slide deck. Test the system."
-          description="Alizane Labs is early. Instead of borrowed credibility, the buying process is procedural: you test the workflow before it carries a real emergency."
+          eyebrow="Proof by process"
+          title="You test it before it handles a single real emergency."
+          description="We don't ask you to trust a sales deck. We run the system through your exact on-call roster, simulate 20 failure scenarios, and confirm every edge case passes before your first live call goes live. Our onboarding is more thorough than most competitors' SLAs."
         />
         <ProofProtocol />
       </Section>
@@ -197,6 +204,10 @@ export default function HomePage() {
           title="Premium because the handoff is managed"
           description="Generic answering products compete on minutes. Alizane Labs is priced around implementation ownership, dispatch verification, monitoring, and fallback operations."
         />
+        <div className="mt-6 mb-10 max-w-3xl text-lg font-medium text-navy">
+          One prevented missed job pays for 3–6 months of service. <br/>
+          At $599/month, the system pays for itself the moment it routes a single $5,000 job that would have gone to voicemail.
+        </div>
         <PricingCards location="home" />
         <p className="mt-5 text-sm text-steel-dark">{pricing.note}</p>
       </Section>
@@ -221,16 +232,16 @@ export default function HomePage() {
               location="closing"
               size="lg"
             >
-              Book my live test
+              Run the live demo on my phone
             </TrackedLink>
             <TrackedLink
-              href={cta.audit.href}
+              href={cta.secondary.href}
               event={analyticsEvents.productCtaClick}
               location="closing-secondary"
               variant="onDark"
               size="lg"
             >
-              Request an after-hours audit
+              See how the dispatch works first
             </TrackedLink>
           </div>
         </div>

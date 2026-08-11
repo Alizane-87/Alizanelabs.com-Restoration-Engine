@@ -3,7 +3,7 @@ import { z } from "zod";
 const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   /** Absolute public origin, e.g. https://alizanelabs.com. Used for canonicals, sitemap, OG. */
-  NEXT_PUBLIC_SITE_URL: z.string().url().default("http://localhost:3000"),
+  NEXT_PUBLIC_SITE_URL: z.string().url().default("https://alizanelabs.com"),
   /** Optional external scheduling URL. When unset, CTAs fall back to /dispatch-audit. */
   NEXT_PUBLIC_SCHEDULING_URL: z.string().url().optional(),
   /** Optional demo phone number in E.164 form. Rendered only when set. */

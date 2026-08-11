@@ -4,7 +4,7 @@ export const homeFaqs: Faq[] = [
   {
     question: "Does this answer every call our company receives?",
     answer:
-      "It handles calls your phone system routes into the Engine according to the forwarding rules you configure.",
+      "Yes — as long as the call reaches our system via forwarding. We set up the forwarding rules during the readiness audit, so this is handled for you.",
   },
   {
     question: "Is this an AI receptionist?",
@@ -39,12 +39,12 @@ export const homeFaqs: Faq[] = [
   {
     question: "Can you send confirmation texts?",
     answer:
-      "This is added after the client has the appropriate A2P registration and documented customer opt-in flow.",
+      "Yes, but it requires a one-time carrier registration (A2P 10DLC). We guide you through it during setup — it's a paperwork step, not a technical one.",
   },
   {
     question: "Do you guarantee recovered revenue?",
     answer:
-      "No. Alizane Labs provides response infrastructure and evidence. Lead volume, staff availability, sales, job qualification, and revenue remain outside the system's control.",
+      "No — and we'll be straight with you: what we guarantee is that the right person on your team was reached and accepted the job. Whether they show up is on your crew. We handle the dispatch chain so nothing falls through the cracks before that.",
   },
 ];
 

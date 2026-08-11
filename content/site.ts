@@ -66,12 +66,12 @@ export const heroTimeline = [
 
 export const problemCards = [
   {
-    title: "Voicemail creates invisible loss",
-    body: "The homeowner receives no accountable next step.",
+    title: "Voicemail loses the job",
+    body: "The homeowner hangs up and calls the next company in Google Maps. You never know it happened.",
   },
   {
-    title: "Notifications are not acknowledgements",
-    body: "A text or email proves delivery—not human acceptance.",
+    title: "A Slack ping is not a dispatched technician",
+    body: "Your tech may be asleep, driving, or off-roster. A notification proves nothing.",
   },
   {
     title: "On-call systems break at the handoff",
