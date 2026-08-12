@@ -32,9 +32,9 @@ export const homeFaqs: Faq[] = [
       "Usually through conditional forwarding. Final compatibility is confirmed during the readiness audit.",
   },
   {
-    question: "What if Retell, n8n, or a database is unavailable?",
+    question: "What happens if there's a system outage?",
     answer:
-      "Production deployments include defined fallback and incident-response procedures. The exact fallback depends on the selected service level.",
+      "Production deployments are built with redundant failover protocols. If the primary Engine experiences a disruption, calls automatically route to your designated secondary channel (like a live answering service or dedicated owner line) so no emergency is ever dropped.",
   },
   {
     question: "Can you send confirmation texts?",
@@ -63,10 +63,5 @@ export const pricingFaqs: Faq[] = [
     question: "What is not included in the launch price?",
     answer:
       "Contracted live-human fallback, additional locations, additional languages, new integrations, SMS workflows, and custom compliance requirements are scoped separately.",
-  },
-  {
-    question: "Can pricing change after the audit?",
-    answer:
-      "The audit establishes the final scope. Listed figures are starting points, not a quote for every deployment.",
   },
 ];

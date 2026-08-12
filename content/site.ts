@@ -86,7 +86,7 @@ export const dispatchSteps = [
   },
   {
     title: "Triage",
-    body: "The Engine identifies urgency and captures the confirmed address, callback number, damage type, and insurance status.",
+    body: "The Engine identifies urgency and captures the confirmed address, callback number, damage category (water/fire/mold), and adjuster/insurance status.",
   },
   {
     title: "Open incident",
@@ -109,7 +109,7 @@ export const dispatchSteps = [
 export const comparisonRows = [
   { capability: "Answers after hours", generic: "Usually", engine: "Yes" },
   {
-    capability: "Restoration-specific intake",
+    capability: "Restoration-native triage (TPA/Water/Fire)",
     generic: "Sometimes",
     engine: "Client-approved runbook",
   },
@@ -183,7 +183,6 @@ export const offerColumns = [
   {
     title: "Implementation",
     items: [
-      "Retell voice agents",
       "Verified dispatch workflow",
       "Managed incident state",
       "Acceptance tests and staff setup",
@@ -217,38 +216,38 @@ export const pricing: {
   tiers: readonly PricingTier[];
   scopedSeparately: readonly string[];
 } = {
-  note: "Launch pricing. Final scope is confirmed during the readiness audit.",
+  note: "Currently accepting 5 design partners. General availability pricing applies after the first cohort.",
   tiers: [
     {
-      name: "Readiness Audit",
-      price: "Included with Onboarding",
-      unit: "one-time evaluation",
-      summary: "Full after-hours routing review and operational risk assessment before go-live.",
+      name: "Design Partner Cohort",
+      price: "$199",
+      unit: "/month per location",
+      setupText: "$499 Setup Fee (Discounted for first 5 partners)",
+      summary: "Full managed emergency intake, sequential escalation, and deterministic acceptance in exchange for a published case study.",
       items: [
-        "Current after-hours call path mapping",
-        "Forwarding and fallback configuration review",
-        "On-call roster & escalation runbook design",
-        "Disclosure, recording consent, & data-flow review",
-        "Line compatibility check",
+        "24/7 After-hours routed emergency intake",
+        "Restoration-native incident triage (Water/Fire/TPA)",
+        "Active call escalation (Sequential roster calls)",
+        "Deterministic press-1 or verbal human acceptance",
+        "Duplicate-acceptance protection & state locking",
+        "Alizane Labs-managed daily health checks",
+        "Monthly response & acceptance timeline reports",
+        "Standard CRM webhook integration",
       ],
+      featured: true,
     },
     {
       name: "Verified Dispatch",
       price: "$599",
       unit: "/month per location",
-      setupText: "From $1,500 implementation setup per location",
-      summary: "Full managed emergency intake, automated intake assistant, sequential escalation, and deterministic acceptance.",
+      setupText: "$1,500 implementation setup per location",
+      summary: "Standard general availability pricing for full managed emergency intake and dispatch verification.",
       items: [
-        "24/7 After-hours routed emergency intake",
-        "Restoration-specific incident triage",
-        "Active call escalation (Sequential roster calls)",
-        "Deterministic press-1 or verbal human acceptance",
-        "Duplicate-acceptance protection & state locking",
-        "Alizane Labs-managed daily health checks & maintenance",
-        "Monthly response & acceptance timeline reports",
+        "All Design Partner cohort features",
         "Up to 3 on-call roster shifts per location",
+        "Standard onboarding & SLA timeline",
       ],
-      featured: true,
+      featured: false,
     },
     {
       name: "Assured Dispatch",
