@@ -1,9 +1,12 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# AGENTS.md - Agency Lead Magnet Site Workspace
 
-# This is NOT the Next.js you know
+At the start of EVERY conversation in this workspace, you MUST automatically execute the following 2 steps BEFORE answering:
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+1. **Read Memory Ledger:** Run `view_file` on `d:\Alizane Labs\Alizane Labs - Antigravity\alizanelabs-site\memory.json`.
+2. **Set Persona & Rules:** Adopt the Next.js/Vercel agency site rules in `.antigravity/rules.md`.
 
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
+## Core Purpose
+Manage and update the Next.js agency landing page for $59/mo Free Website lead capture.
+- Repo: `alizanelabs-site`
+- Hosting: Vercel ($0)
+- Form Lead Webhook: `https://[your-n8n-instance].app.n8n.cloud/webhook/agency-lead-capture`

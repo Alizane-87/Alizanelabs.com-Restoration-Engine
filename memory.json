@@ -1,0 +1,23 @@
+{
+  "project_name": "alizanelabs-site",
+  "business_type": "Agency Lead Magnet ($59/mo Free Website + Hosting)",
+  "last_updated": "2026-08-13T04:56:00+05:30",
+  "status": "ready_for_vercel_deployment",
+  "tech_stack": {
+    "framework": "Next.js",
+    "styling": "Tailwind CSS",
+    "hosting": "Vercel ($0)",
+    "lead_capture": "n8n Webhook -> Telegram/Email/SMS Alert"
+  },
+  "configurations": {
+    "lead_webhook_url": "https://[your-n8n-instance].app.n8n.cloud/webhook/agency-lead-capture",
+    "github_repo": "alizanelabs-site"
+  },
+  "daily_thread_log": [
+    {
+      "date": "2026-08-13",
+      "summary": "Completed site copy, configured /api/lead POST handler, generated n8n lead capture workflow JSON.",
+      "next_step": "Deploy repo to Vercel and configure LEAD_WEBHOOK_URL environment variable."
+    }
+  ]
+}
