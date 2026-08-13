@@ -1,23 +1,24 @@
 {
   "project_name": "alizanelabs-site",
-  "business_type": "Agency Lead Magnet ($59/mo Free Website + Hosting)",
-  "last_updated": "2026-08-13T16:00:50+05:30",
+  "business_type": "Restoration Emergency Dispatch System Web App (alizanelabs.com)",
+  "last_updated": "2026-08-13T16:07:00+05:30",
   "status": "stage_1_pushed_to_dedicated_github_repo",
   "tech_stack": {
-    "framework": "Next.js",
+    "framework": "Next.js 16 (Turbopack)",
     "styling": "Tailwind CSS",
     "hosting": "Vercel ($0)",
     "lead_capture": "n8n Webhook -> Telegram/Email/SMS Alert"
   },
   "configurations": {
+    "canonical_url": "https://alizanelabs.com",
     "lead_webhook_url": "https://[your-n8n-instance].app.n8n.cloud/webhook/agency-lead-capture",
     "github_repo": "https://github.com/Alizane-87/alizanelabs-site-website-ai-automation"
   },
   "daily_thread_log": [
     {
       "date": "2026-08-13",
-      "summary": "Pushed all codebase files to new dedicated repository https://github.com/Alizane-87/alizanelabs-site-website-ai-automation.",
-      "next_step": "Configure LEAD_WEBHOOK_URL environment variable once n8n workflow is published."
+      "summary": "Confirmed alizanelabs-site is the production Next.js site for alizanelabs.com / Restoration Emergency Engine.",
+      "next_step": "Plug LEAD_WEBHOOK_URL when n8n lead workflow is active."
     }
   ]
 }
