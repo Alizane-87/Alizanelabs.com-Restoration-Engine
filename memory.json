@@ -1,8 +1,8 @@
 {
-  "project_name": "alizanelabs-site",
-  "business_type": "Restoration Emergency Dispatch System Web App (alizanelabs.com)",
-  "last_updated": "2026-08-13T16:07:00+05:30",
-  "status": "stage_1_pushed_to_dedicated_github_repo",
+  "project_name": "alizanelabs.com (Restoration Emergency Engine)",
+  "business_type": "Restoration Emergency Dispatch System Web App ($599/mo Retainer)",
+  "last_updated": "2026-08-13T16:11:45+05:30",
+  "status": "pushed_to_Alizanelabs.com-Restoration-Engine_repo",
   "tech_stack": {
     "framework": "Next.js 16 (Turbopack)",
     "styling": "Tailwind CSS",
@@ -11,14 +11,14 @@
   },
   "configurations": {
     "canonical_url": "https://alizanelabs.com",
-    "lead_webhook_url": "https://[your-n8n-instance].app.n8n.cloud/webhook/agency-lead-capture",
-    "github_repo": "https://github.com/Alizane-87/alizanelabs-site-website-ai-automation"
+    "vercel_url": "https://alizanelabs-com.vercel.app",
+    "github_repo": "https://github.com/Alizane-87/Alizanelabs.com-Restoration-Engine"
   },
   "daily_thread_log": [
     {
       "date": "2026-08-13",
-      "summary": "Confirmed alizanelabs-site is the production Next.js site for alizanelabs.com / Restoration Emergency Engine.",
-      "next_step": "Plug LEAD_WEBHOOK_URL when n8n lead workflow is active."
+      "summary": "Restored git origin to https://github.com/Alizane-87/Alizanelabs.com-Restoration-Engine and pushed main branch successfully.",
+      "next_step": "Configure LEAD_WEBHOOK_URL when n8n lead workflow is active."
     }
   ]
 }
